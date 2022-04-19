@@ -1,0 +1,76 @@
+#include<iostream>
+#include<cstdio>      //Header file
+#include<stdlib.h>
+using namespace std;
+struct node{   //structure
+        char  name[80];
+        int id,w_hours,rate,gross,tax,netsal;
+        struct node *link;
+        };
+void push(struct node **top,struct node data){        //push function
+        struct node *temp;
+        temp=(struct node *)malloc(sizeof(struct node));   //Allocating memory dynamically for new node
+	for(int i=0;data.name[i]!='\0';i++)
+		temp->name[i]=data.name[i];
+
+
+        temp->id=data.id;
+        temp->w_hours=data.w_hours;
+        temp->rate=data.rate;
+        temp->gross=data.gross;
+        temp->tax=data.gross;
+        temp->netsal=data.netsal;
+        temp->link=*top;    //making link with top node
+        *top=temp;   //storing address of top in temp
+        }
+void pop(struct node **top){   //pop function
+        struct node *temp;
+        if(*top==NULL){           //checking if stack is empty
+                cout<<"\nStack is empty";
+                return;
+                }
+        temp=*top;
+        char*  name=temp->name;    //storing the name whose data will be popped
+        *top = (*top)->link;
+        free(temp);   //deallocating temp
+        cout<<"\n Data of "<<name<<" is popped";
+        }
+void display(struct node *top){   //function display
+        while(top!=NULL){   //loop will continue until top becomes null
+                cout<<top->name<<"  "<<top->id<<"  "<<top->w_hours<<"  "<<top->rate<<"  "<<top->gross<<"  "<<top->tax<<"  "<<top->netsal<<endl;
+                top=top->link;
+                }
+        }
+int main(){
+struct node *top=NULL,data;   //declaring variable
+char c;
+int choice;  //choice for menu
+FILE *fp;   //fp is a file pointer
+data.link=NULL;   //we do not need link part for storing data temporary
+fp=fopen("EmployeeField.txt","r");   //opening file in read mode
+do {            //loop will skip the first line of the file
+  c = fgetc(fp);
+} while (c != '\n');
+while(!feof(fp)){    //loop will continue until end of file
+                fscanf(fp,"%s%d%d%d%d%d%d",data.name,&data.id,&data.w_hours,&data.rate,&data.gross,&data.tax,&data.netsal);//reading from file
+                push(&top,data);   //push operation
+                }
+display(top);  //display
+while(1){   //menu loop
+        cout<<"\nFor push,press 1...\nFor pop,press 2...\nEsle for exit press any key...   ";
+        cin>>choice;   //taking input choice
+        if(choice==1){    //if choice ==1 then push
+                cout<<"\nEnter Data seperated by space \n";
+                cin>>data.name>>data.id>>data.w_hours>>data.rate>>data.gross>> data.tax>>data.netsal;
+                push(&top,data);
+                display(top);
+                }
+        else if(choice == 2){    //if choice == 2 then pop
+                pop(&top);
+                display(top);
+                }
+        else
+                break;
+        }
+return 0;
+}

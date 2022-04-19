@@ -1,0 +1,66 @@
+class Complex{
+	float real,img;
+	Complex(float a1,float b1){
+		this.real=a1;this.img=b1;
+		}
+	public static Complex add(Complex c1,Complex c2){
+	 	Complex temp= new Complex(0,0);
+	 	temp.real=c1.real+c2.real;
+	 	temp.img=c1.img+c2.img;
+	 	return temp;
+	 	}
+	 public static Complex sub(Complex c1,Complex c2){
+	 	Complex temp= new Complex(0,0);
+	 	temp.real=c1.real-c2.real;
+	 	temp.img=c1.img-c2.img;
+	 	return temp;
+	 	}
+	 public static Complex mul(Complex c1,Complex c2){
+	 	Complex temp= new Complex(0,0);
+	 	temp.real=c1.real*c2.real - c1.img*c2.img;
+	 	temp.img=c1.img*c2.real+c2.img*c1.real;
+	 	return temp;
+	 	}
+	 public static Complex div(Complex c1,Complex c2){
+	 	Complex temp= new Complex(0,0);
+	 	float x,y,z,p;
+	 	x=(-1)*c2.img;
+	 	y=c2.real*c2.real+c2.img*c2.img;
+	 	z=c1.real*c2.real - c1.img*x;
+	 	p=c1.img*c2.real+x*c1.real;
+	 	temp.real=z/y;
+	 	temp.img=p/y;
+	 	return temp;
+	 	}
+	 public static void display(Complex temp,int i){
+	 	if(i==1)
+	 	System.out.println("SUM = " + temp.real +" + ( "+temp.img+"i ) ");
+	 	else if(i==2) 
+	 	System.out.println("SUBTRACTION = " + temp.real +" + ( "+temp.img+"i ) ");
+	 	else if(i==3)
+	 	System.out.println("MULTIPLICATION = " + temp.real +" + ( "+temp.img+"i ) ");
+	 	else
+	 	System.out.println("DIVISION = " + temp.real +" + ( "+temp.img+"i ) ");
+	 	}
+	 }
+public class ComplexNo{
+public static void main(String args[]){
+Complex x1=new Complex(3,2);
+Complex x2=new Complex(4,-3);
+Complex res1=Complex.add(x1,x2);
+Complex.display(res1,1);
+Complex res2=Complex.sub(x1,x2);
+Complex.display(res2,2);
+Complex res3=Complex.mul(x1,x2);
+Complex.display(res3,3);
+Complex res4=Complex.div(x1,x2);
+Complex.display(res4,4);
+}
+}
+/*OUTPUT
+SUM = 7.0 + ( -1.0i ) 
+SUBTRACTION = -1.0 + ( 5.0i ) 
+MULTIPLICATION = 18.0 + ( -1.0i ) 
+DIVISION = 0.24 + ( 0.68i ) 
+*/	 
+	 	

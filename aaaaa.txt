@@ -1,0 +1,9 @@
+define n, sum = 0, count = 0, positive = 0, negative = 0;
+
+while(true)
+{
+    input n;
+    if(n == 0)
+        break;
+    count = count+1;
+    

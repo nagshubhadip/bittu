@@ -1,0 +1,11 @@
+1 John Doe 3.6 20 40
+5 Steve Smith 2.8 60 80
+4 Josh Butler 1.9 30 70
+2 Ryan Harris 3.2 20 50
+6 Michel Hussy 2.6 45 60
+3 Virat Kohli 1.7 50 70
+7 Joe Root 2.8 40 70
+9 Jeason Roy 3.8 50 80
+8 Rohit Sharma 2.5 30 70
+10 Sean Abott 1.9 30 50
+
